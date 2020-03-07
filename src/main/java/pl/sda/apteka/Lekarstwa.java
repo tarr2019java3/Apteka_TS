@@ -1,4 +1,4 @@
-package main.java.pl.sda.apteka;
+package pl.sda.apteka;
 
 public class Lekarstwa {
     private String[] nazwa;
@@ -42,19 +42,36 @@ public class Lekarstwa {
         double cenafinal=0;
         if (ubezpieczony) {
 
-            for (int i = 0; i == this.nazwa.length - 1; i++) {
+            for (int i = 0; i < this.nazwa.length; i++) {
 
-                if (this.getNazwa()[i] == lek)
-                     cenafinal =this.getCena()[i] * this.getRefundacja()[i];
+                if (this.getNazwa()[i].equals(lek))
+                     cenafinal =this.getCena()[i]-(this.getCena()[i] * this.getRefundacja()[i]);
             }
         }
         else {
-            for (int i = 0; i == this.nazwa.length - 1; i++) {
+            for (int i = 0; i< this.nazwa.length - 1; i++) {
 
-                if (this.getNazwa()[i] == lek)
+                if (this.getNazwa()[i].equals(lek))
                     cenafinal = this.getCena()[i];
             }
         }
         return cenafinal;
     }
+
+    public String maksymalnarefudnacjja(){
+        int nrlek=0;
+        double maksref =0;
+
+        for(int i =0;i < this.refundacja.length;i++){
+            if(maksref<=this.getRefundacja()[i]){
+                maksref = this.getRefundacja()[i];
+                nrlek = i;
+            }
+        }
+
+
+        return this.getNazwa()[nrlek];
+    }
+
+
 }
