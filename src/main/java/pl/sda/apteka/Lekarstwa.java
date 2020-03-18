@@ -63,14 +63,29 @@ public class Lekarstwa {
         double maksref =0;
 
         for(int i =0;i < this.refundacja.length;i++){
-            if(maksref<=this.getRefundacja()[i]){
-                maksref = this.getRefundacja()[i];
+            if(maksref<=this.getCena()[i]*this.getRefundacja()[i]){
+                maksref = this.getCena()[i]*this.getRefundacja()[i];
                 nrlek = i;
             }
         }
 
 
         return this.getNazwa()[nrlek];
+    }
+    public double kosztCalkowity(){
+        double koszt = 0;
+        for(int i =0;i < this.refundacja.length;i++){
+
+            koszt=this.getCena()[i]-(this.getCena()[i] * this.getRefundacja()[i]);
+            }
+
+        return koszt;
+    }
+
+    public void wyswietl(){
+        for(int i =0;i<this.getRefundacja().length;i++ ){
+        System.out.println(this.getNazwa()[i]+", "+this.getCena()[i]+", "+this.getRefundacja()[i]);
+        }
     }
 
 
